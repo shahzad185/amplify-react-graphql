@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React and aws
+          Learn React and aws and here goes continuous deployment
         </a>
       </header>
     </div>
