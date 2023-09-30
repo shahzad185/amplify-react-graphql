@@ -20,7 +20,7 @@ import {
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
 
-  useEffect(() => {
+  useEffect( () => {
     fetchNotes();
   }, []);
 
@@ -31,27 +31,27 @@ const App = ({ signOut }) => {
   }
 
   async function createNote(event) {
-    // event.preventDefault();
-    // const form = new FormData(event.target);
-    // const data = {
-    //   name: form.get("name"),
-    //   description: form.get("description"),
-    // };
-    // await API.graphql({
-    //   query: createNoteMutation,
-    //   variables: { input: data },
-    // });
-    // fetchNotes();
-    // event.target.reset();
+    event.preventDefault();
+    const form = new FormData(event.target);
+    const data = {
+      name: form.get("name"),
+      description: form.get("description"),
+    };
+    await API.graphql({
+      query: createNoteMutation,
+      variables: { input: data },
+    });
+    fetchNotes();
+    event.target.reset();
   }
 
   async function deleteNote({ id }) {
-    // const newNotes = notes.filter((note) => note.id !== id);
-    // setNotes(newNotes);
-    // await API.graphql({
-    //   query: deleteNoteMutation,
-    //   variables: { input: { id } },
-    // });
+    const newNotes = notes.filter((note) => note.id !== id);
+    setNotes(newNotes);
+    await API.graphql({
+      query: deleteNoteMutation,
+      variables: { input: { id } },
+    });
   }
 
   return (
